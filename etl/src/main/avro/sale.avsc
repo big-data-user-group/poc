@@ -1,0 +1,11 @@
+{
+    "namespace": "org.bd.poc",
+    "type": "record",
+    "name": "Sale",
+    "fields": [
+     {"name": "productId", "type": "string"},
+     {"name": "officeLocationId", "type": "string"},
+     {"name": "soldPrice", "type": "string"},
+     {"name": "date", "type": "string"}
+    ]
+}

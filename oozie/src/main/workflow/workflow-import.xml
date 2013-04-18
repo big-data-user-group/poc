@@ -1,0 +1,50 @@
+<workflow-app name="importer-workflow" xmlns="uri:oozie:workflow:0.2">
+
+    <start to="import"/>
+
+    <action name="import">
+        <map-reduce>
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <prepare>
+                <delete path="${nameNode}/out" />
+            </prepare>
+            <job-xml>config-default.xml</job-xml>
+            <configuration>
+                <!-- Need to tell Oozie to use the new Hadoop API -->
+                <property>
+                    <name>mapred.mapper.new-api</name>
+                    <value>true</value>
+                </property>
+                <property>
+                    <name>mapred.reducer.new-api</name>
+                    <value>true</value>
+                </property>
+
+                <property>
+                    <name>mapred.output.dir</name>
+                    <value>${nameNode}/out</value>
+                </property>
+                <property>
+                    <name>mapred.job.queue.name</name>
+                    <value>${queueName}</value>
+                </property>
+
+                <property>
+                    <name>oozie.launcher.action.main.class</name>
+                    <value>org.bd.poc.ImporterOozieLauncher</value>
+                </property>
+            </configuration>
+        </map-reduce>
+        <ok to="end" />
+        <error to="kill" />
+    </action>
+
+    <kill name="kill">
+        <message>Workflow failed with error message ${wf:errorMessage()}
+        </message>
+    </kill>
+
+    <end name="end" />
+
+</workflow-app>
