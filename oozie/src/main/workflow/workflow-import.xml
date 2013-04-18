@@ -37,10 +37,10 @@
             </configuration>
         </map-reduce>
         <ok to="end" />
-        <error to="kill" />
+        <error to="killed" />
     </action>
 
-    <kill name="kill">
+    <kill name="killed">
         <message>Workflow failed with error message ${wf:errorMessage()}
         </message>
     </kill>

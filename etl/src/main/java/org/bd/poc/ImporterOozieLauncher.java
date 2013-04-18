@@ -17,7 +17,7 @@ public class ImporterOozieLauncher extends MapReduceMain {
     @Override
     protected RunningJob submitJob(Configuration actionConf) throws Exception {
 //        // override conf
-        new ImporterNewAPI().initializeConfiguration(actionConf);
+        new ImporterNewAPIAvro().initializeConfiguration(actionConf);
 
         return super.submitJob(actionConf);
     }

@@ -71,8 +71,6 @@ public class ImporterNewAPIAvro {
     public static class Map extends Mapper<LongWritable, DBRecord, AvroKey<Sale>, NullWritable> {
         @Override
         protected void map(LongWritable key, DBRecord value, Context context) throws IOException, InterruptedException {
-//            List<String> fields = Lists.newArrayList(Long.toString(value.date), Long.toString(value.productID), Long.toString(value.locationID), value.totalPrice);
-//            String outLine = Joiner.on(",").join(fields);
             Sale sale = Sale.newBuilder()
                     .setProductId(Long.toString(value.productID))
                     .setOfficeLocationId(Long.toString(value.locationID))
