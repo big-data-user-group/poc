@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -rf poc-oozie-app 
 tar -xvzf ./oozie-1.0-SNAPSHOT-bundle.tar.gz
 
 hadoop fs -rm -r /dturbay/poc-oozie-app
